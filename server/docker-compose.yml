@@ -1,0 +1,16 @@
+version: "3.4"
+
+services:
+  db:
+    image: neo4j:latest
+    container_name: db-container
+    environment: { "NEO4J_AUTH": "neo4j/1234" }
+    ports:
+      - 7474:7474
+      - 7687:7687
+  incidents:
+    container_name: incidents-container
+    build: ./src/incidents
+    env_file: ./src/incidents/.env
+    ports:
+      - 192.168.99.100:4100:4100
